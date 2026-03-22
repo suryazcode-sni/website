@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Griffinys Global Solutions | Business Consulting & IT Training</title>
+<meta name="description" content="Griffinys Global Solutions — Business Consulting and IT Training & Placement in Chennai. BA, Scrum Master programs and strategic advisory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   EXACT COLOR PALETTE — matched from screenshot
+   Nav bg:        #1E2D40  (deep navy blue)
+   Logo gold:     #E8B84B  (griffin yellow-gold)
+   Logo text:     #FFFFFF
+   Logo tagline:  #C8C0A8  (warm cream)
+   Nav links:     #FFFFFF
+   Hero title:    #D4C9A8  (parchment cream)
+   Button bg:     #C4A96A  (muted gold-tan)
+   Button text:   #2A1F0A  (dark brown)
+   Hero overlay:  rgba(20,32,48,0.58)
+   Body white:    #FFFFFF
+   Section alt:   #F4F2EE  (very light warm white)
+   Footer bg:     #1E2D40  (same as nav)
+═══════════════════════════════════════════ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:#fff;color:#1E2D40;overflow-x:hidden;line-height:1.7}
+
+/* ── NAVIGATION — exact #1E2D40 navy ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:#1E2D40;
+  height:75px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;
+  box-shadow:0 2px 12px rgba(0,0,0,0.25);
+}
+.logo-area{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:pointer}
+.logo-img{height:48px;width:auto;object-fit:contain}
+.logo-words{display:flex;flex-direction:column;line-height:1.1}
+.logo-name{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:0.12em}
+.logo-tag{font-size:10px;letter-spacing:0.12em;color:#C8C0A8;margin-top:3px}
+.nav-menu{display:flex;align-items:center;gap:2rem}
+.nm{
+  font-size:13px;letter-spacing:0.08em;
+  color:#fff;text-decoration:none;
+  background:none;border:none;font-family:inherit;
+  cursor:pointer;padding:6px 14px;
+  transition:color .2s;position:relative;
+}
+.nm:hover{color:#E8B84B}
+.nm.active{background:rgba(255,255,255,0.12);color:#fff}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:#fff}
+.mob-menu{display:none;position:fixed;inset:0;background:#1E2D40;z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mob-menu.open{display:flex}
+.mob-close{position:absolute;top:1.5rem;right:2rem;font-size:1.5rem;color:rgba(255,255,255,0.5);background:none;border:none;cursor:pointer}
+.mob-link{font-family:'Cinzel',serif;font-size:1.5rem;color:#fff;text-decoration:none;background:none;border:none;cursor:pointer;letter-spacing:0.1em;transition:color .2s}
+.mob-link:hover{color:#E8B84B}
+
+/* ── HERO — full-bleed photo + dark navy overlay + parchment text ── */
+#hero{
+  position:relative;
+  height:100vh;min-height:620px;
+  margin-top:75px;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('https://static.wixstatic.com/media/86da6968c96d4516959e0f9cbce5252e.jpg/v1/fill/w_1920,h_1080,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/86da6968c96d4516959e0f9cbce5252e.jpg')
+    center center / cover no-repeat;
+  /* Fallback if Wix CDN blocks the image */
+  background-color:#1E2D40;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  /* exact dark navy-blue overlay matching the screenshot */
+  background:rgba(20,32,48,0.58);
+}
+.hero-content{position:relative;z-index:1;padding:0 2rem}
+/* Cinzel — normal words, clean letter spacing */
+.hero-brand{
+  font-family:'Cinzel',serif;
+  font-size:clamp(2.8rem,8vw,6.5rem);
+  font-weight:700;
+  color:#D4C9A8;
+  letter-spacing:0.12em;
+  line-height:1.15;
+  margin-bottom:0.2rem;
+  text-indent:0;
+}
+.hero-brand2{
+  font-family:'Cinzel',serif;
+  font-size:clamp(2rem,5.5vw,4.8rem);
+  font-weight:600;
+  color:#D4C9A8;
+  letter-spacing:0.1em;
+  line-height:1.2;
+  margin-bottom:0.15rem;
+  text-indent:0;
+}
+/* "Know More" pill button — golden tan, rounded, exactly like screenshot */
+.hero-btn{
+  display:inline-block;
+  margin-top:2.5rem;
+  padding:16px 48px;
+  background:#C4A96A;
+  color:#2A1F0A;
+  font-family:'Jost',sans-serif;
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  transition:background .25s,transform .15s;
+  text-decoration:none;
+}
+.hero-btn:hover{background:#D4B97A;transform:translateY(-2px)}
+
+/* ── SHARED SECTION STYLES ── */
+.sec{padding:5.5rem 5%}
+.sec-inner{max-width:1100px;margin:0 auto}
+.eyebrow{
+  font-size:10px;letter-spacing:0.28em;text-transform:uppercase;
+  color:#E8B84B;margin-bottom:0.6rem;
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow::before{content:'';display:block;width:28px;height:1px;background:#E8B84B}
+h2.sec-h{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.7rem,3.5vw,2.6rem);
+  font-weight:600;color:#1E2D40;
+  line-height:1.2;letter-spacing:0.06em;margin-bottom:0.75rem;
+}
+h2.sec-h em{font-style:italic;color:#C4A96A;font-family:'Jost',serif}
+.sec-rule{width:44px;height:2px;background:#E8B84B;margin-bottom:1.2rem}
+p.sec-p{font-size:14px;color:#4A5568;line-height:1.85;max-width:580px}
+
+/* ── ABOUT ── */
+#about{background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img-wrap{position:relative}
+.about-img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.about-stamp{
+  position:absolute;bottom:-18px;right:-18px;
+  background:#1E2D40;padding:1.4rem 1.6rem;text-align:center;
+}
+.about-stamp .n{font-family:'Cinzel',serif;font-size:2rem;font-weight:700;color:#E8B84B;line-height:1}
+.about-stamp .l{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#C8C0A8;margin-top:4px}
+.about-text p{font-size:14px;color:#4A5568;line-height:1.9;margin-bottom:0.9rem}
+.about-vals{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:1.8rem}
+.av{padding:1rem 1.1rem;border-left:3px solid #E8B84B;background:#F4F2EE}
+.av h4{font-size:12px;font-weight:600;color:#1E2D40;margin-bottom:0.2rem;letter-spacing:0.05em;text-transform:uppercase}
+.av p{font-size:12px;color:#5A6472;line-height:1.55}
+
+/* ── SERVICES ── */
+#services{background:#F4F2EE}
+.offer-photos{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:3rem}
+.offer-cell{position:relative;overflow:hidden;aspect-ratio:16/9}
+.offer-cell img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.offer-cell:hover img{transform:scale(1.04)}
+.offer-label{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.5rem 1.8rem;
+  background:linear-gradient(to top,rgba(20,32,48,0.85),transparent);
+}
+.offer-label h3{
+  font-family:'Cinzel',serif;font-size:1.2rem;font-weight:600;
+  color:#D4C9A8;letter-spacing:0.1em;
+}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #DDD8CE}
+.svc{
+  padding:2.2rem 1.8rem;background:#fff;
+  border-right:1px solid #DDD8CE;border-bottom:1px solid #DDD8CE;
+  transition:background .25s;cursor:pointer;position:relative;overflow:hidden;
+}
+.svc:nth-child(3n){border-right:none}
+.svc:nth-last-child(-n+3){border-bottom:none}
+.svc::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:#E8B84B;transition:height .3s}
+.svc:hover{background:#FDFBF6}
+.svc:hover::before{height:100%}
+.svc-n{font-family:'Cinzel',serif;font-size:2.8rem;font-weight:700;color:rgba(232,184,75,0.12);line-height:1;margin-bottom:0.7rem}
+.svc h3{font-size:13px;font-weight:600;color:#1E2D40;margin-bottom:0.5rem;letter-spacing:0.06em;text-transform:uppercase}
+.svc p{font-size:13px;color:#5A6472;line-height:1.65}
+.svc-more{font-size:11px;color:#C4A96A;letter-spacing:0.08em;margin-top:0.8rem;opacity:0;transition:opacity .2s}
+.svc:hover .svc-more{opacity:1}
+
+/* ── HOW WE WORK ── */
+#process{background:#fff}
+.proc-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid #DDD8CE;margin-top:2.5rem}
+.pstep{padding:2rem 1.2rem;border-right:1px solid #DDD8CE;text-align:center;transition:background .2s}
+.pstep:last-child{border-right:none}
+.pstep:hover{background:#F4F2EE}
+.pdot{
+  width:44px;height:44px;border-radius:50%;
+  border:1.5px solid #E8B84B;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;
+  font-family:'Cinzel',serif;font-size:1rem;font-weight:700;
+  color:#E8B84B;transition:all .25s;
+}
+.pstep:hover .pdot{background:#1E2D40;border-color:#1E2D40;color:#E8B84B}
+.pstep h4{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#1E2D40;margin-bottom:0.5rem}
+.pstep p{font-size:11px;color:#5A6472;line-height:1.55}
+
+/* ── TRAINING — navy background, gold accents ── */
+#training{background:#1E2D40}
+#training .eyebrow{color:rgba(232,184,75,0.7)}
+#training .eyebrow::before{background:rgba(232,184,75,0.7)}
+#training h2.sec-h{color:#fff;letter-spacing:0.08em}
+#training h2.sec-h em{color:#E8B84B;font-style:normal}
+#training p.sec-p{color:rgba(255,255,255,0.5)}
+.t-top{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:3rem}
+.tstats{display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.5rem}
+.tstat{border-left:2px solid #E8B84B;padding-left:1rem}
+.tstat .n{font-family:'Cinzel',serif;font-size:1.9rem;font-weight:700;color:#E8B84B;line-height:1}
+.tstat .l{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-top:3px}
+.t-btns{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:2rem}
+.btn-gold-pill{
+  padding:12px 30px;background:#C4A96A;color:#2A1F0A;
+  border:none;font-family:inherit;font-size:11px;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;
+  border-radius:50px;transition:background .2s;
+}
+.btn-gold-pill:hover{background:#D4B97A}
+.btn-outline-white{
+  padding:12px 30px;border:1px solid rgba(255,255,255,0.25);
+  color:rgba(255,255,255,0.65);background:none;font-family:inherit;
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  cursor:pointer;border-radius:50px;transition:all .2s;
+}
+.btn-outline-white:hover{border-color:#E8B84B;color:#E8B84B}
+
+/* TRAINING TABS */
+.tbar{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,0.1);margin-bottom:2.5rem;flex-wrap:wrap}
+.ttab{
+  padding:10px 20px;font-size:12px;letter-spacing:0.06em;
+  cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;
+  background:none;font-family:inherit;color:rgba(255,255,255,0.35);
+  transition:all .2s;border-top:none;border-left:none;border-right:none;
+}
+.ttab.active{color:#E8B84B;border-bottom-color:#E8B84B}
+.ttab:hover:not(.active){color:rgba(255,255,255,0.7)}
+.tpanel{display:none}
+.tpanel.active{display:block}
+
+/* WHY PANEL */
+.wpts{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.wpt{display:flex;gap:0.9rem}
+.wpt-ic{width:34px;height:34px;min-width:34px;background:rgba(232,184,75,0.1);border:1px solid rgba(232,184,75,0.2);display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:2px}
+.wpt h4{font-size:13px;font-weight:500;color:#fff;margin-bottom:0.2rem}
+.wpt p{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.55}
+
+/* SYLLABUS */
+.stabs{display:flex;gap:6px;margin-bottom:1.8rem;flex-wrap:wrap}
+.stab{padding:6px 18px;border:1px solid rgba(232,184,75,0.2);color:rgba(255,255,255,0.35);font-size:12px;cursor:pointer;background:none;font-family:inherit;transition:all .2s;border-radius:2px}
+.stab.active{background:#E8B84B;color:#1E2D40;border-color:#E8B84B;font-weight:600}
+.stab:hover:not(.active){border-color:#E8B84B;color:#E8B84B}
+.sc{display:none}
+.sc.active{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06)}
+.mod{padding:1.5rem;background:#1E2D40;transition:background .2s}
+.mod:hover{background:#243447}
+.mod-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.8rem}
+.mod-num{font-size:9px;letter-spacing:0.15em;color:#E8B84B;font-weight:600;text-transform:uppercase}
+.mod-wk{font-size:10px;color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.05);padding:2px 8px}
+.mod h3{font-size:13px;font-weight:500;color:#fff;margin-bottom:0.6rem}
+.mod ul{list-style:none}
+.mod li{font-size:11px;color:rgba(255,255,255,0.4);padding:0.25rem 0 0.25rem 0.9rem;position:relative;border-bottom:1px solid rgba(255,255,255,0.04);line-height:1.5}
+.mod li::before{content:'·';position:absolute;left:0;color:#E8B84B;font-size:1rem;top:0}
+
+/* ROADMAP */
+.rm-wrap{padding-left:1.5rem;border-left:1px solid rgba(232,184,75,0.3);max-width:680px}
+.rm-item{padding:0 0 2rem 2rem;position:relative}
+.rm-dot{position:absolute;left:-1.8rem;top:3px;width:11px;height:11px;border-radius:50%;background:#E8B84B;border:2px solid #1E2D40}
+.rm-ph{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:#E8B84B;font-weight:600;margin-bottom:0.3rem}
+.rm-item h3{font-size:14px;font-weight:500;color:#fff;margin-bottom:0.3rem}
+.rm-item p{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6}
+.rm-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:0.5rem}
+.rtag{font-size:10px;padding:2px 9px;border:1px solid rgba(232,184,75,0.2);color:rgba(232,184,75,0.6)}
+
+/* PLACEMENT */
+.pl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(232,184,75,0.1)}
+.plc{padding:1.8rem 1.5rem;background:#1E2D40;transition:background .2s}
+.plc:hover{background:#243447}
+.pl-ic{font-size:1.2rem;margin-bottom:0.7rem}
+.plc h4{font-size:13px;font-weight:600;color:#fff;margin-bottom:0.4rem}
+.plc p{font-size:12px;color:rgba(255,255,255,0.4);line-height:1.6}
+.pl-promise{margin-top:1.5rem;padding:1.3rem 1.8rem;border:1px solid rgba(232,184,75,0.2);display:flex;gap:1.2rem;align-items:center;background:rgba(232,184,75,0.05)}
+.pl-promise h4{font-size:13px;font-weight:600;color:#fff;margin-bottom:0.2rem}
+.pl-promise p{font-size:12px;color:rgba(255,255,255,0.4)}
+
+/* UPCOMING */
+.fc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(232,184,75,0.1)}
+.fcc{padding:1.5rem;background:#1E2D40;transition:background .2s}
+.fcc:hover{background:#243447}
+.fcc-lbl{font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#E8B84B;margin-bottom:0.5rem;display:block}
+.fcc h4{font-size:13px;font-weight:500;color:#fff;margin-bottom:0.3rem}
+.fcc p{font-size:11px;color:rgba(255,255,255,0.35);line-height:1.5}
+
+/* ── CAREERS ── */
+#careers{background:#F4F2EE}
+.careers-top{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:end;margin-bottom:2.5rem}
+.roles{display:flex;flex-direction:column;gap:1px;background:#DDD8CE}
+.role{padding:1.4rem 1.8rem;background:#fff;display:grid;grid-template-columns:1fr auto;align-items:center;gap:1.5rem;transition:background .2s}
+.role:hover{background:#FDFBF6}
+.role-title{font-size:14px;font-weight:600;color:#1E2D40;margin-bottom:0.3rem;letter-spacing:0.02em}
+.role-meta{display:flex;gap:0;flex-wrap:wrap}
+.rmeta{font-size:11px;color:#8A96A8}
+.rmeta::after{content:' · ';color:#C8C0A8}
+.rmeta:last-child::after{display:none}
+.abtn{padding:9px 22px;border:1.5px solid #1E2D40;color:#1E2D40;background:none;font-family:inherit;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:all .2s}
+.abtn:hover{background:#1E2D40;color:#fff}
+
+/* ── CONTACT — navy like footer ── */
+#contact{background:#1E2D40}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1100px;margin:0 auto}
+.ci h3{font-family:'Cinzel',serif;font-size:2rem;font-weight:600;color:#fff;letter-spacing:0.08em;line-height:1.2;margin-bottom:1rem}
+.ci h3 span{color:#E8B84B}
+.ci p{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.85;margin-bottom:1.5rem}
+.cd{display:flex;gap:0.9rem;align-items:flex-start;margin-bottom:0.9rem}
+.cd-ic{width:34px;height:34px;min-width:34px;border:1px solid rgba(232,184,75,0.25);display:flex;align-items:center;justify-content:center;font-size:13px;color:#E8B84B}
+.cd-lbl{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2px}
+.cd-val{font-size:13px;color:rgba(255,255,255,0.75)}
+.cd-val a{color:#E8B84B;text-decoration:none}
+.cd-val a:hover{color:#C4A96A}
+.cf{display:flex;flex-direction:column;gap:0.8rem}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem}
+.cf input,.cf textarea,.cf select{
+  padding:12px 14px;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  color:#fff;font-family:inherit;font-size:13px;outline:none;
+  transition:border-color .2s;width:100%;
+}
+.cf input:focus,.cf textarea:focus,.cf select:focus{border-color:rgba(232,184,75,0.5)}
+.cf input::placeholder,.cf textarea::placeholder{color:rgba(255,255,255,0.2)}
+.cf select{color:rgba(255,255,255,0.4)}
+.cf select option{background:#243447}
+.cf textarea{height:90px;resize:none}
+.cf button{padding:13px;background:#C4A96A;color:#1E2D40;border:none;font-family:inherit;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:50px;transition:background .2s}
+.cf button:hover{background:#E8B84B}
+
+/* ── FOOTER — same navy as nav ── */
+footer{
+  background:#161F2B;
+  padding:1.8rem 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(232,184,75,0.12);
+  flex-wrap:wrap;gap:1rem;
+}
+.ft-brand{font-family:'Cinzel',serif;font-size:13px;color:rgba(255,255,255,0.3);letter-spacing:0.1em}
+.ft-links{display:flex;gap:1.5rem}
+.ftl{font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.06em;text-decoration:none;cursor:pointer;background:none;border:none;font-family:inherit;transition:color .2s}
+.ftl:hover{color:#E8B84B}
+.ft-social{display:flex;gap:0.6rem}
+.fsoc{width:28px;height:28px;border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(255,255,255,0.3);text-decoration:none;transition:all .2s}
+.fsoc:hover{border-color:#E8B84B;color:#E8B84B}
+.ft-copy{font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:0.06em}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-menu{display:none}.hamburger{display:flex}
+  .about-grid,.t-top,.why-grid,.careers-top,.contact-grid{grid-template-columns:1fr}
+  .svc-grid,.pl-grid,.fc-grid{grid-template-columns:1fr 1fr}
+  .proc-row{grid-template-columns:1fr;border:1px solid #DDD8CE}
+  .pstep{border-right:none;border-bottom:1px solid #DDD8CE}
+  .sc.active{grid-template-columns:1fr}
+  .cf-row{grid-template-columns:1fr}
+  .offer-photos{grid-template-columns:1fr}
+  .about-stamp{display:none}
+  .sec{padding:4rem 4%}
+}
+@media(max-width:600px){
+  .svc-grid,.pl-grid{grid-template-columns:1fr}
+  .fc-grid{grid-template-columns:1fr 1fr}
+  .hero-brand{font-size:2.4rem;letter-spacing:0.1em;text-indent:0}
+  .hero-brand2{font-size:1.8rem;letter-spacing:0.08em;text-indent:0}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <button class="mob-close" onclick="document.getElementById('mob-menu').classList.remove('open')">✕</button>
+  <a class="mob-link" href="#hero" onclick="document.getElementById('mob-menu').classList.remove('open')">Home</a>
+  <a class="mob-link" href="#about" onclick="document.getElementById('mob-menu').classList.remove('open')">About</a>
+  <a class="mob-link" href="#services" onclick="document.getElementById('mob-menu').classList.remove('open')">Services</a>
+  <a class="mob-link" href="#training" onclick="document.getElementById('mob-menu').classList.remove('open')">Training</a>
+  <a class="mob-link" href="#careers" onclick="document.getElementById('mob-menu').classList.remove('open')">Careers</a>
+  <a class="mob-link" href="#contact" onclick="document.getElementById('mob-menu').classList.remove('open')">Contact</a>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav id="mainnav">
+  <a class="logo-area" href="#hero">
+    <img class="logo-img"
+      src="https://static.wixstatic.com/media/1b930f_38a45cfdf74d4506b91ed6a1444ac06f~mv2.png/v1/fill/w_180,h_65,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Copy%2520of%2520LOGO_edited.png"
+      alt="Griffinys Logo"
+      onerror="this.style.display='none'">
+    <div class="logo-words">
+      <span class="logo-name">GRIFFINYS</span>
+      <span class="logo-tag">Place for finest solution</span>
+    </div>
+  </a>
+  <div class="nav-menu">
+    <a class="nm active" href="#hero">Home</a>
+    <a class="nm" href="#services">Services</a>
+    <a class="nm" href="#careers">Careers</a>
+    <a class="nm" href="#about">About</a>
+    <a class="nm" href="#contact">Contact</a>
+  </div>
+  <button class="hamburger" onclick="document.getElementById('mob-menu').classList.add('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-brand">GRIFFINYS</div>
+    <div class="hero-brand2">GLOBAL</div>
+    <div class="hero-brand2">SOLUTION</div>
+    <a class="hero-btn" href="#about">Know More</a>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<div class="sec" id="about" style="background:#fff">
+  <div class="sec-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img class="about-img"
+          src="https://static.wixstatic.com/media/4f8f5a805e504f0c95afe05b01d26d77.jpg/v1/fill/w_980,h_654,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/4f8f5a805e504f0c95afe05b01d26d77.jpg"
+          alt="Griffinys Office"
+          onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80'">
+        <div class="about-stamp"><div class="n">2020</div><div class="l">Est. Chennai</div></div>
+      </div>
+      <div class="about-text">
+        <div class="eyebrow">About Our Business</div>
+        <h2 class="sec-h">Committed to Excellence</h2>
+        <div class="sec-rule"></div>
+        <p>Griffinys Global Solutions offers the comprehensive capabilities and deep industry knowledge necessary to help you solve the most complex issues of your organisation. Our team is ready to help you develop strategies for not only surviving, but thriving in the future.</p>
+        <p>Backed by experienced professionals, our services meet the needs of all types and sizes of clients — from small startups to large firms — and deliver lasting changes with measurable growth.</p>
+        <div class="about-vals">
+          <div class="av"><h4>Problem-First</h4><p>We diagnose before we prescribe. Every engagement starts with genuine listening.</p></div>
+          <div class="av"><h4>Practical Outcomes</h4><p>Strategy is only valuable when executed. We stay through implementation.</p></div>
+          <div class="av"><h4>Structured Thinking</h4><p>Data-backed decisions and clear logic in every recommendation.</p></div>
+          <div class="av"><h4>Trusted Partner</h4><p>Long-term relationships. Your growth is our measure of success.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══ -->
+<div class="sec" id="services" style="background:#F4F2EE">
+  <div class="sec-inner">
+    <div class="eyebrow">What We Offer</div>
+    <h2 class="sec-h">Our Services</h2>
+    <p class="sec-p" style="margin-bottom:2.5rem">Exceeding your expectations — from strategic planning to digital transformation and IT training.</p>
+    <div class="offer-photos">
+      <div class="offer-cell">
+        <img src="https://static.wixstatic.com/media/1d48d8c57a7449499b2cecf09ceda9c1.jpg/v1/fill/w_940,h_626,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/1d48d8c57a7449499b2cecf09ceda9c1.jpg"
+          alt="Business Consulting"
+          onerror="this.src='https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80'">
+        <div class="offer-label"><h3>Business Consulting</h3></div>
+      </div>
+      <div class="offer-cell">
+        <img src="https://static.wixstatic.com/media/0141bb700ad54cf2b0457ae50b0704c5.jpg/v1/fill/w_940,h_628,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/0141bb700ad54cf2b0457ae50b0704c5.jpg"
+          alt="Strategic Planning"
+          onerror="this.src='https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80'">
+        <div class="offer-label"><h3>Strategic Planning</h3></div>
+      </div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc"><div class="svc-n">01</div><h3>Strategic Planning</h3><p>We examine what organisations are doing to stay relevant and competitive — then strategise using smart tools and global resources.</p><div class="svc-more">Enquire →</div></div>
+      <div class="svc"><div class="svc-n">02</div><h3>Branding & Positioning</h3><p>We combine our insights and skills to transform your processes, strategies, and how your business is perceived in the market.</p><div class="svc-more">Enquire →</div></div>
+      <div class="svc"><div class="svc-n">03</div><h3>Operations & Process</h3><p>Identify inefficiencies, streamline workflows, and build lean operating models that reduce cost, risk, and friction.</p><div class="svc-more">Enquire →</div></div>
+      <div class="svc"><div class="svc-n">04</div><h3>Startup Advisory</h3><p>Business model validation, unit economics, investor-readiness, and operational foundations for early-stage ventures.</p><div class="svc-more">Enquire →</div></div>
+      <div class="svc"><div class="svc-n">05</div><h3>Digital Transformation</h3><p>Technology-enabled change — from tools selection and vendor evaluation to full implementation support.</p><div class="svc-more">Enquire →</div></div>
+      <div class="svc"><div class="svc-n">06</div><h3>Performance Management</h3><p>OKR design, KPI dashboards, and accountability systems that align your entire team around measurable outcomes.</p><div class="svc-more">Enquire →</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROCESS ══ -->
+<div class="sec" id="process" style="background:#fff">
+  <div class="sec-inner">
+    <div class="eyebrow">How We Work</div>
+    <h2 class="sec-h">Our Engagement Model</h2>
+    <div class="proc-row">
+      <div class="pstep"><div class="pdot">1</div><h4>Discover</h4><p>Deep-dive into your business, goals, and challenges with no prior assumptions.</p></div>
+      <div class="pstep"><div class="pdot">2</div><h4>Diagnose</h4><p>Structured root cause analysis, gap mapping, and opportunity identification.</p></div>
+      <div class="pstep"><div class="pdot">3</div><h4>Design</h4><p>Co-create a strategy with clear priorities, timelines, and success metrics.</p></div>
+      <div class="pstep"><div class="pdot">4</div><h4>Deploy</h4><p>Hands-on implementation support — not just a report and goodbye.</p></div>
+      <div class="pstep"><div class="pdot">5</div><h4>Review</h4><p>Measure results, course-correct, and evolve the strategy as you grow.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRAINING ══ -->
+<div class="sec" id="training">
+  <div class="sec-inner">
+    <div class="t-top">
+      <div>
+        <div class="eyebrow">IT Training & Placement</div>
+        <h2 class="sec-h">BA + Scrum Master<br><em>Combined Program</em></h2>
+        <div class="sec-rule"></div>
+        <p class="sec-p">India's most practical dual-role IT training program. Active placement support until you're hired. CBAP-aligned BA track. PSM-I-aligned Scrum Master track.</p>
+        <div class="tstats">
+          <div class="tstat"><div class="n">12</div><div class="l">Week Program</div></div>
+          <div class="tstat"><div class="n">2</div><div class="l">Certifications</div></div>
+          <div class="tstat"><div class="n">100%</div><div class="l">Placement Focus</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="t-btns">
+          <button class="btn-gold-pill" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enrol Now</button>
+          <button class="btn-outline-white" onclick="switchTT('syllabus',document.querySelectorAll('.ttab')[1])">View Full Syllabus ↓</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tbar">
+      <button class="ttab active" onclick="switchTT('why',this)">Why Combined?</button>
+      <button class="ttab" onclick="switchTT('syllabus',this)">Full Syllabus</button>
+      <button class="ttab" onclick="switchTT('roadmap',this)">Roadmap</button>
+      <button class="ttab" onclick="switchTT('placement',this)">Placement</button>
+      <button class="ttab" onclick="switchTT('upcoming',this)">Upcoming Courses</button>
+    </div>
+
+    <!-- WHY -->
+    <div class="tpanel active" id="tp-why">
+      <div class="wpts">
+          <div class="wpt"><div class="wpt-ic">🎯</div><div><h4>Double the job openings</h4><p>Apply for BA, SM, and Agile BA hybrid roles simultaneously — tripling your opportunity pool.</p></div></div>
+          <div class="wpt"><div class="wpt-ic">📈</div><div><h4>30–40% higher salary bands</h4><p>Dual certified candidates command significantly higher packages than single-role profiles.</p></div></div>
+          <div class="wpt"><div class="wpt-ic">🔄</div><div><h4>They complement each other</h4><p>BAs define what to build. SMs facilitate delivery. Understanding both makes you invaluable in any Agile team.</p></div></div>
+          <div class="wpt"><div class="wpt-ic">🏆</div><div><h4>Interview-ready, not just certified</h4><p>Real project narratives, a tangible portfolio, and confidence to handle any interview thrown at you.</p></div></div>
+          <div class="wpt"><div class="wpt-ic">💼</div><div><h4>Management track from day one</h4><p>Both roles sit on the management track, positioning you for leadership roles faster than technical paths.</p></div></div>
+        </div>
+    </div>
+
+    <!-- SYLLABUS -->
+    <div class="tpanel" id="tp-syllabus">
+      <div class="stabs">
+        <button class="stab active" id="stab-ba" onclick="switchSyl('ba')">Business Analyst Track</button>
+        <button class="stab" id="stab-sm" onclick="switchSyl('sm')">Scrum Master Track</button>
+        <button class="stab" id="stab-co" onclick="switchSyl('co')">Combined & Placement</button>
+      </div>
+      <div class="sc active" id="sc-ba">
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 01</span><span class="mod-wk">Wks 1–2</span></div><h3>BA Foundations</h3><ul><li>Business Analysis overview & BABOK v3</li><li>BA vs PM vs PO vs SM role differences</li><li>Types of BAs: IT, process, data, product</li><li>BA lifecycle and key deliverables</li><li>Core competencies of an effective BA</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 02</span><span class="mod-wk">Wks 2–3</span></div><h3>Requirements Elicitation</h3><ul><li>Stakeholder identification & matrix</li><li>Interviews, workshops, JAD sessions</li><li>Document analysis & observation</li><li>Active listening & probing questions</li><li>Managing conflicting requirements</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 03</span><span class="mod-wk">Wks 3–4</span></div><h3>Requirements Documentation</h3><ul><li>BRD and FRS writing</li><li>Use cases — diagrams, flows, templates</li><li>User stories with INVEST criteria</li><li>Acceptance criteria (Given/When/Then)</li><li>Requirements Traceability Matrix (RTM)</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 04</span><span class="mod-wk">Wks 4–5</span></div><h3>Process & Gap Analysis</h3><ul><li>AS-IS vs TO-BE process mapping</li><li>BPMN and swimlane diagrams</li><li>Root cause analysis — 5 Whys, Fishbone</li><li>Gap analysis and remediation planning</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 05</span><span class="mod-wk">Wks 5–6</span></div><h3>Data, Tools & SQL</h3><ul><li>DFDs and Entity Relationship Diagrams</li><li>SQL for BAs: SELECT, JOIN, WHERE</li><li>Jira: epics, stories, sprint boards</li><li>Confluence documentation & wikis</li><li>Wireframing: Balsamiq / Figma basics</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 06</span><span class="mod-wk">Wk 6</span></div><h3>BA in Agile Teams</h3><ul><li>How the BA role shifts in Agile</li><li>BA vs Product Owner collaboration</li><li>BA participation in sprint ceremonies</li><li>Continuous requirements discovery</li></ul></div>
+      </div>
+      <div class="sc" id="sc-sm">
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 07</span><span class="mod-wk">Wks 6–7</span></div><h3>Agile & Scrum Foundations</h3><ul><li>Agile manifesto: 4 values, 12 principles</li><li>Scrum framework overview</li><li>Three roles: SM, PO, Dev Team</li><li>Scrum vs Kanban vs SAFe</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 08</span><span class="mod-wk">Wks 7–8</span></div><h3>Scrum Events Deep-Dive</h3><ul><li>Sprint planning: goal & commitment</li><li>Daily Scrum facilitation</li><li>Sprint review & stakeholder engagement</li><li>Retrospective: 4Ls, Start/Stop/Continue</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 09</span><span class="mod-wk">Wk 8</span></div><h3>Scrum Artefacts</h3><ul><li>Product backlog: structure & ownership</li><li>Sprint backlog & team commitment</li><li>Increment: potentially shippable</li><li>Definition of Done & Definition of Ready</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 10</span><span class="mod-wk">Wks 8–9</span></div><h3>SM as Servant Leader</h3><ul><li>Servant leadership in practice</li><li>Impediment identification & removal</li><li>Coaching vs managing</li><li>Protecting team from mid-sprint changes</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 11</span><span class="mod-wk">Wk 9</span></div><h3>Agile Metrics & Reporting</h3><ul><li>Velocity, cycle time, lead time</li><li>Burndown & burnup charts</li><li>Capacity planning & release forecasting</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 12</span><span class="mod-wk">Wks 9–10</span></div><h3>Scaling Agile</h3><ul><li>SAFe (Scaled Agile) basics</li><li>LeSS overview</li><li>Multi-team coordination</li><li>PI Planning introduction</li></ul></div>
+      </div>
+      <div class="sc" id="sc-co">
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 13</span><span class="mod-wk">Wks 10–11</span></div><h3>Live Project Simulation</h3><ul><li>Mock project: play both BA and SM roles</li><li>Stakeholder interview from real brief</li><li>Write stories, run sprint planning</li><li>Portfolio artefacts created during simulation</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 14</span><span class="mod-wk">Wk 11</span></div><h3>Experience Framing</h3><ul><li>Ethical dual-role experience framing</li><li>Building career narratives for interviews</li><li>STAR method for behavioural questions</li><li>Top 50 BA and SM interview questions</li></ul></div>
+        <div class="mod"><div class="mod-top"><span class="mod-num">MOD 15</span><span class="mod-wk">Wks 11–12</span></div><h3>Placement Preparation</h3><ul><li>Resume writing: structure & ATS keywords</li><li>LinkedIn profile complete rebuild</li><li>Mock HR interviews — minimum 3 rounds</li><li>Salary negotiation tactics</li></ul></div>
+      </div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="tpanel" id="tp-roadmap">
+      <div class="rm-wrap">
+        <div class="rm-item"><div class="rm-dot"></div><div class="rm-ph">Weeks 1–2</div><h3>Foundations & Orientation</h3><p>Industry overview, tools setup, cohort onboarding. Understanding where BA and SM fit in IT delivery.</p><div class="rm-tags"><span class="rtag">BA Intro</span><span class="rtag">Agile Overview</span><span class="rtag">Jira Setup</span></div></div>
+        <div class="rm-item"><div class="rm-dot"></div><div class="rm-ph">Weeks 3–4</div><h3>BA Core Skills</h3><p>Elicitation, user story writing, BRD documentation. Stakeholder interviews with real case studies.</p><div class="rm-tags"><span class="rtag">BRD Writing</span><span class="rtag">User Stories</span><span class="rtag">Process Mapping</span></div></div>
+        <div class="rm-item"><div class="rm-dot"></div><div class="rm-ph">Weeks 5–6</div><h3>Scrum Framework Mastery</h3><p>Deep-dive into Scrum events, artefacts, and roles. Sprint simulations within your own cohort.</p><div class="rm-tags"><span class="rtag">Sprint Planning</span><span class="rtag">Retrospectives</span><span class="rtag">Velocity</span></div></div>
+        <div class="rm-item"><div class="rm-dot"></div><div class="rm-ph">Weeks 7–8</div><h3>Advanced Skills + Tools</h3><p>Data-driven BA, Jira & Confluence mastery, SQL basics, wireframing. Portfolio artefacts begin.</p><div class="rm-tags"><span class="rtag">SQL</span><span class="rtag">Confluence</span><span class="rtag">Wireframing</span></div></div>
+        <div class="rm-item"><div class="rm-dot"></div><div class="rm-ph">Weeks 9–10</div><h3>Live Project Simulation</h3><p>Full sprint simulation — BA and SM roles in a structured mock project. Real artefacts, real debrief.</p><div class="rm-tags"><span class="rtag">Mock Sprint</span><span class="rtag">Portfolio</span><span class="rtag">Debrief</span></div></div>
+        <div class="rm-item"><div class="rm-dot"></div><div class="rm-ph">Weeks 11–12</div><h3>Placement Sprint</h3><p>Resume, experience framing, LinkedIn, mock interviews, and job referrals. We don't stop until you're placed.</p><div class="rm-tags"><span class="rtag">Resume</span><span class="rtag">Mock Interviews</span><span class="rtag">Referrals</span></div></div>
+      </div>
+    </div>
+
+    <!-- PLACEMENT -->
+    <div class="tpanel" id="tp-placement">
+      <div class="pl-grid">
+        <div class="plc"><div class="pl-ic">📋</div><h4>Tailored Resume Crafting</h4><p>Individual resume builds with ATS-optimised keywords and dual-role experience framing.</p></div>
+        <div class="plc"><div class="pl-ic">🎯</div><h4>3+ Mock Interview Rounds</h4><p>HR, technical, and scenario-based rounds with written feedback after every session.</p></div>
+        <div class="plc"><div class="pl-ic">🌐</div><h4>Active Client Network</h4><p>Partnerships with IT staffing firms and product companies actively hiring BA and SM profiles.</p></div>
+        <div class="plc"><div class="pl-ic">🔗</div><h4>LinkedIn Strategy</h4><p>Full profile rebuild, keyword optimisation, and recruiter-attraction templates.</p></div>
+        <div class="plc"><div class="pl-ic">📁</div><h4>Portfolio You Own</h4><p>Every student graduates with BRDs, sprint artefacts, and case studies ready for interviews.</p></div>
+        <div class="plc"><div class="pl-ic">📣</div><h4>Direct Job Referrals</h4><p>We refer eligible candidates directly to hiring managers — not just job boards.</p></div>
+      </div>
+      <div class="pl-promise">
+        <div style="font-size:2rem">🏆</div>
+        <div><h4>Our Placement Promise</h4><p>We don't stop supporting you until you're placed. Additional sessions, resume updates, and referrals continue post-completion.</p></div>
+      </div>
+    </div>
+
+    <!-- UPCOMING -->
+    <div class="tpanel" id="tp-upcoming">
+      <p style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:1.5rem">More IT management programs launching in 2025–2026. Register interest for founding-batch pricing.</p>
+      <div class="fc-grid">
+        <div class="fcc"><span class="fcc-lbl">Q3 2025</span><h4>Product Owner (CSPO)</h4><p>Own the product vision and manage backlogs.</p></div>
+        <div class="fcc"><span class="fcc-lbl">Q4 2025</span><h4>Project Manager (PMP)</h4><p>Full PMP exam prep for IT and non-IT domains.</p></div>
+        <div class="fcc"><span class="fcc-lbl">Q4 2025</span><h4>Data Analytics for BAs</h4><p>SQL, Power BI, and Excel for business analysts.</p></div>
+        <div class="fcc"><span class="fcc-lbl">Q1 2026</span><h4>SAFe Agilist</h4><p>Scaled Agile for enterprise programme delivery.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CAREERS ══ -->
+<div class="sec" id="careers" style="background:#F4F2EE">
+  <div class="sec-inner">
+    <div class="careers-top">
+      <div>
+        <div class="eyebrow">Join Our Team</div>
+        <h2 class="sec-h">Build something meaningful with us</h2>
+      </div>
+      <p class="sec-p">We're rebuilding Griffinys and looking for passionate people to grow with us — in consulting, training delivery, and business development.</p>
+    </div>
+    <div class="roles">
+      <div class="role"><div><div class="role-title">Business Analyst Trainer</div><div class="role-meta"><span class="rmeta">Training Division</span><span class="rmeta">Chennai</span><span class="rmeta">Part-time / Full-time</span><span class="rmeta">₹3–6 LPA</span></div></div><button class="abtn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Apply Now</button></div>
+      <div class="role"><div><div class="role-title">Scrum Master Trainer</div><div class="role-meta"><span class="rmeta">Training Division</span><span class="rmeta">Chennai</span><span class="rmeta">Part-time / Full-time</span><span class="rmeta">₹3–6 LPA</span></div></div><button class="abtn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Apply Now</button></div>
+      <div class="role"><div><div class="role-title">Business Development Executive</div><div class="role-meta"><span class="rmeta">Consulting</span><span class="rmeta">Chennai</span><span class="rmeta">Full-time</span><span class="rmeta">Incentive-Based</span></div></div><button class="abtn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Apply Now</button></div>
+      <div class="role"><div><div class="role-title">Placement Coordinator</div><div class="role-meta"><span class="rmeta">Training Division</span><span class="rmeta">Chennai</span><span class="rmeta">Full-time</span><span class="rmeta">₹2.5–4 LPA</span></div></div><button class="abtn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Apply Now</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div class="sec" id="contact">
+  <div class="contact-grid">
+    <div class="ci">
+      <div class="eyebrow" style="color:rgba(232,184,75,0.7)">Contact Us</div>
+      <h3>Let's start a <span>conversation</span></h3>
+      <p>Whether you're a business looking for strategic advisory, a professional ready to launch your IT career, or a company looking to hire — we'd love to hear from you.</p>
+      <div class="cd"><div class="cd-ic">✉</div><div><div class="cd-lbl">Email</div><div class="cd-val"><a href="mailto:suryanarayanan@griffinys.com">suryanarayanan@griffinys.com</a></div></div></div>
+      <div class="cd"><div class="cd-ic">📞</div><div><div class="cd-lbl">Phone</div><div class="cd-val"><a href="tel:+919715022528">+91 97150 22528</a></div></div></div>
+      <div class="cd"><div class="cd-ic">📍</div><div><div class="cd-lbl">Location</div><div class="cd-val">Chennai, Tamil Nadu, India</div></div></div>
+    </div>
+    <form class="cf" action="#" method="POST" id="contact-form">
+      <div class="cf-row">
+        <input type="text" placeholder="Your full name" id="cf-name" name="name" required>
+        <input type="email" placeholder="Email address" id="cf-email" name="email" required>
+      </div>
+      <input type="tel" placeholder="Phone number" name="phone">
+      <select name="interest">
+        <option value="" disabled selected>I'm interested in…</option>
+        <option>Business Consulting</option>
+        <option>BA + Scrum Master Training Program</option>
+        <option>Upcoming IT Courses</option>
+        <option>Careers at Griffinys</option>
+        <option>Hiring Trained Candidates</option>
+        <option>Other</option>
+      </select>
+      <textarea placeholder="Tell us about your goal or requirement…" name="message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <span class="ft-brand">GRIFFINYS GLOBAL SOLUTIONS</span>
+  <div class="ft-links">
+    <a class="ftl" href="#about">About</a>
+    <a class="ftl" href="#services">Services</a>
+    <a class="ftl" href="#training">Training</a>
+    <a class="ftl" href="#careers">Careers</a>
+    <a class="ftl" href="#contact">Contact</a>
+  </div>
+  <div class="ft-social">
+    <a class="fsoc" href="https://www.facebook.com/griffindgroup/" target="_blank">f</a>
+    <a class="fsoc" href="https://www.linkedin.com/company/griffinys-global-solutions" target="_blank">in</a>
+  </div>
+  <span class="ft-copy">© 2025 Griffinys Global Solutions · Chennai</span>
+</footer>
+
+<script>
+// Nav active state on scroll
+const sections=['hero','about','services','process','training','careers','contact'];
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<=80)cur=id;
+  });
+  document.querySelectorAll('.nm').forEach(l=>{
+    l.classList.remove('active');
+    const href=l.getAttribute('href');
+    if(href&&href==='#'+cur)l.classList.add('active');
+    if(cur===''&&href==='#hero')l.classList.add('active');
+  });
+});
+
+// Training tabs
+function switchTT(name,btn){
+  document.querySelectorAll('.tpanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ttab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tp-'+name).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+// Syllabus sub-tabs
+function switchSyl(name){
+  ['ba','sm','co'].forEach(n=>{
+    document.getElementById('sc-'+n).classList.remove('active');
+    document.getElementById('stab-'+n).classList.remove('active');
+  });
+  document.getElementById('sc-'+name).classList.add('active');
+  document.getElementById('stab-'+name).classList.add('active');
+}
+
+// Contact form — submit to Formspree
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  const name = document.getElementById('cf-name').value.trim();
+  if(!name) {
+    e.preventDefault();
+    alert('Please enter your name.');
+    return;
+  }
+});
+</script>
+</body>
+</html>
